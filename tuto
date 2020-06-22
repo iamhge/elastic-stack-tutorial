@@ -66,7 +66,6 @@ function install_elk_packages
 	#nvm install 10.15.1
 	sudo curl -sL https://deb.nodesource.com/setup_12.x  | sudo -E bash -
 	sudo apt -y install nodejs
-	sudo apt-get install build-essential
 	#sudo apt-get install npm
 	
 	mkdir ${PKGS_DIR}
@@ -89,9 +88,10 @@ function install_elk_packages
 	
 	sudo git clone https://github.com/mobz/elasticsearch-head.git
 	cd ${HEAD_DIR}
-	# sudo yum -y update openssl
-	wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz
-	tar -xvzf openssl-1.1.1g.tar.gz
+	sudo apt-get -y update openssl
+	#cd /usr/src
+	#wget https://www.openssl.org/source/openssl-1.1.1-pre7.tar.gz
+	#tar -xvzf openssl-1.1.1g.tar.gz
 	sudo npm install
 	
 	sudo sh -c "echo 'ec2-user		soft    nofile          65536' >> /etc/security/limits.conf"
