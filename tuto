@@ -53,9 +53,20 @@ function install_elk_packages
 	
 	git pull
 
-	sudo yum -y install wget java
-	sudo yum -y install bzip2 epel-release
-	sudo yum -y install npm
+	sudo apt-get install openjdk-8-jdk
+	sudo sh -c "echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> /etc/profile"
+	sudo sh -c "echo 'export PATH=\$JAVA_HOME/bin:\$PATH' >> /etc/profile"
+	sudo sh -c "ehco 'export Class_PATH=\$JAVA_HOME/lib:\$CLASS_PATH' >> /etc/profile"
+	
+	sudo apt-get install bzip2 # epel-release
+	sudo apt-get install build-essential libssl-dev
+	curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
+	bash install_nvm.sh
+	source ~/.profile
+	nvm install 10.15.1
+	#sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+	#sudo apt -y install nodejs
+	#sudo apt-get install npm
 	
 	mkdir ${PKGS_DIR}
 	cd ${PKGS_DIR}
@@ -65,10 +76,10 @@ function install_elk_packages
 	wget ${KB_PKGS}
 	wget ${FB_PKGS}
 
-	tar xfz ${ES}
-	tar xfz ${LS}
-	tar xfz ${KB}
-	tar xfz ${FB}
+	tar -xfz ${ES}
+	tar -xfz ${LS}
+	tar -xfz ${KB}
+	tar -xfz ${FB}
 
 	ln -s ./elasticsearch-${VER} elasticsearch
 	ln -s ./logstash-${VER} logstash
@@ -77,7 +88,9 @@ function install_elk_packages
 	
 	sudo git clone https://github.com/mobz/elasticsearch-head.git
 	cd ${HEAD_DIR}
-	sudo yum -y update openssl
+	# sudo yum -y update openssl
+	wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz
+	tar -xvzf openssl-1.1.1g.tar.gz
 	sudo npm install
 	
 	sudo sh -c "echo 'ec2-user		soft    nofile          65536' >> /etc/security/limits.conf"
