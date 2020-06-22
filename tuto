@@ -60,12 +60,13 @@ function install_elk_packages
 	
 	sudo apt-get install bzip2 # epel-release
 	sudo apt-get install build-essential libssl-dev
-	curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
-	bash install_nvm.sh
-	source ~/.profile
-	nvm install 10.15.1
-	#sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-	#sudo apt -y install nodejs
+	#curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
+	#bash install_nvm.sh
+	#source ~/.profile
+	#nvm install 10.15.1
+	sudo curl -sL https://deb.nodesource.com/setup_12.x  | sudo -E bash -
+	sudo apt -y install nodejs
+	sudo apt-get install build-essential
 	#sudo apt-get install npm
 	
 	mkdir ${PKGS_DIR}
