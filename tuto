@@ -64,8 +64,8 @@ function install_elk_packages
 	#bash install_nvm.sh
 	#source ~/.profile
 	#nvm install 10.15.1
-	sudo curl -sL https://deb.nodesource.com/setup_12.x  | sudo -E bash -
-	sudo apt -y install nodejs
+	##sudo curl -sL https://deb.nodesource.com/setup_12.x  | sudo -E bash -
+	##sudo apt -y install nodejs
 	#sudo apt-get install npm
 	
 	mkdir ${PKGS_DIR}
@@ -86,13 +86,13 @@ function install_elk_packages
 	ln -s ./kibana-${VER}-linux-x86_64 kibana
 	ln -s ./filebeat-${VER}-linux-x86_64 filebeat
 	
-	sudo git clone https://github.com/mobz/elasticsearch-head.git
-	cd ${HEAD_DIR}
-	sudo apt-get -y update openssl
+	## sudo git clone https://github.com/mobz/elasticsearch-head.git
+	## cd ${HEAD_DIR}
+	## sudo apt-get -y update openssl
 	#cd /usr/src
 	#wget https://www.openssl.org/source/openssl-1.1.1-pre7.tar.gz
 	#tar -xvzf openssl-1.1.1g.tar.gz
-	sudo npm install
+	##sudo npm install
 	
 	sudo sh -c "echo 'ec2-user		soft    nofile          65536' >> /etc/security/limits.conf"
 	sudo sh -c "echo 'ec2-user		hard    nofile          65536' >> /etc/security/limits.conf"
@@ -106,7 +106,7 @@ function es_start
 	cp ${CONF_DIR}/${ES_CONF} ${PKGS_DIR}/${ES_DIR}/config/elasticsearch.yml
 	${PKGS_DIR}/${ES_DIR}/bin/elasticsearch -d
 	cd ${PKGS_DIR}/${HEAD_DIR}
-	nohup npm run start &
+	##nohup npm run start &
 	cd ../..
 }
 
