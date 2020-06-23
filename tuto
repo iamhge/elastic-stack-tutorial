@@ -53,10 +53,10 @@ function install_elk_packages
 	
 	git pull
 
-	sudo apt-get install openjdk-8-jdk
-	sudo sh -c "echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> /etc/profile"
-	sudo sh -c "echo 'export PATH=\$JAVA_HOME/bin:\$PATH' >> /etc/profile"
-	sudo sh -c "ehco 'export Class_PATH=\$JAVA_HOME/lib:\$CLASS_PATH' >> /etc/profile"
+	# sudo apt-get install openjdk-8-jdk
+	# sudo sh -c "echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> /etc/profile"
+	# sudo sh -c "echo 'export PATH=\$JAVA_HOME/bin:\$PATH' >> /etc/profile"
+	# sudo sh -c "ehco 'export Class_PATH=\$JAVA_HOME/lib:\$CLASS_PATH' >> /etc/profile"
 	
 	sudo apt-get install bzip2 # epel-release
 	sudo apt-get install build-essential libssl-dev
@@ -89,10 +89,7 @@ function install_elk_packages
 	## sudo git clone https://github.com/mobz/elasticsearch-head.git
 	## cd ${HEAD_DIR}
 	## sudo apt-get -y update openssl
-	#cd /usr/src
-	#wget https://www.openssl.org/source/openssl-1.1.1-pre7.tar.gz
-	#tar -xvzf openssl-1.1.1g.tar.gz
-	##sudo npm install
+	## sudo npm install
 	
 	sudo sh -c "echo 'ec2-user		soft    nofile          65536' >> /etc/security/limits.conf"
 	sudo sh -c "echo 'ec2-user		hard    nofile          65536' >> /etc/security/limits.conf"
@@ -105,9 +102,9 @@ function es_start
 {
 	cp ${CONF_DIR}/${ES_CONF} ${PKGS_DIR}/${ES_DIR}/config/elasticsearch.yml
 	${PKGS_DIR}/${ES_DIR}/bin/elasticsearch -d
-	cd ${PKGS_DIR}/${HEAD_DIR}
+	#cd ${PKGS_DIR}/${HEAD_DIR}
 	##nohup npm run start &
-	cd ../..
+	#cd ../..
 }
 
 function kb_start
